@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Реактивная авиация</title>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <style>
+        body{
+            background: rgb(0, 73, 91);
+        }
+        .Title{
+            background: rgb(62, 49, 122);
+            border: 5px yellowgreen outset;
+
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+
+            color: white;
+            font-size: 40px;
+            padding: 4mm;
+            margin-bottom: 3%;
+        }
+
+        .Block{
+            background: rgb(62, 49, 122);
+            border: 5px yellowgreen outset;
+
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+
+            color: white;
+            font-size: 20px;
+            padding: 4mm;
+            margin-bottom: 1%;
+            width: 40%;
+
+            transition: all 500ms ease-in-out;
+        }
+        .Main{
+            margin: 2%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .RedText{
+            color: red;
+        }
+        .BlueText{
+            color: aqua;
+        }
+        .Block:hover{
+            transition-property: width, font-size;
+            transition-duration: 500ms;
+            width: 80%;
+            font-size: 40px;
+        }
+        .Block:active{
+            transition-property: width;
+            transition-duration: 100ms;
+            width: 90%;
+            font-size: 50px;
+        }
+        .Plane{
+            display: flex;
+            position:fixed;
+            background-image: url("{{ url_for('static', filename='img/21.png') }}");
+            width: 160px;
+            height: 70px;
+            z-index: 9999;
+            transform: rotate(0deg);
+        }
+    </style>
+    <script>
+
+var PlaneHTML;
+
+var StartPointHTML;
+
+window.onload = function(){
+    PlaneHTML = document.querySelector(".Plane");
+    StartPointHTML = document.querySelector("body")
+}
+
+const ConverTriangle = 57.29577;
+
+var LastScrollX = 0;
+var LastScrollY = 0;
+
+var MPX = 180;
+var MPY = 135;
+
+var pX=0;
+var pY=0;
+
+var TargetPosX = 0;
+var TargetPosY = 0;
+var Angle = 0;
+
+function GetAngleBetween(TPX, TPY, MPX, MPY) {
+    return Math.atan2(TPY - MPY, TPX - MPX) * ConverTriangle;
+}
+
+function CorrectiveAngles(){
+    AngleTry = GetAngleBetween(TargetPosX, TargetPosY, MPX, MPY);
+    
+    if (AngleTry < 0){
+        AngleTry += 360;
+    }
+    var DAngle = AngleTry - Angle;
+    if (DAngle > 180){
+        DAngle -= 360;
+    }
+    if (DAngle < -180){
+        DAngle += 360;
+    }
+
+    Angle += Clamp(DAngle, -.3, .3);
+    Angle %= 360;
+    if (Angle < 0) { Angle += 360; }
+    //if (AngleTry < 0) {AngleTry += 180}
+}
+
+function Clamp(Value, Min, Max){
+    if (Value < Min) return Min;
+    else if (Value > Max) return Max;
+    return Value;
+}
+
+function MoveByAngle(Steps, X, Y, AngleN){
+    var Radians = AngleN / ConverTriangle;
+    return [X + Steps * Math.cos(Radians), Y + Steps * Math.sin(Radians)];
+}
+
+function SetMyPos(X, Y){
+    PlaneHTML.style.marginLeft = (X - 80) + "px";
+    PlaneHTML.style.marginTop  = (Y - 35) + "px";
+}
+
+window.addEventListener('mousemove', (event) => {
+    TargetPosX=event.clientX;
+    TargetPosY=event.clientY;
+    //Update()
+});
+
+function Update(){
+    SetMyPos(MPX, MPY);
+    CorrectiveAngles();
+    var Data = MoveByAngle(1.3, MPX, MPY, Angle);
+    MPX = Data[0]; MPY = Data[1];
+    MPX -= window.scrollX - LastScrollX; MPY -= window.scrollY - LastScrollY;
+    LastScrollX = window.scrollX; LastScrollY = window.scrollY;
+    PlaneHTML.style.transform = "rotate(" + Angle + "deg)"
+}
+
+setInterval(Update, 10)
+    </script>
+
+</head>
+
+<html>
+    <a href="/">
+        <div class="Plane">
+
+        </div>
+    </a>
+    <body>
+        <div class="Main">
+            <div class="Title">
+                <h1 class="RedText">Отечественная</h1>
+                <h1>реактивная</h1>
+                <h1 class="BlueText">авиация</h1>
+            </div>
+
+            <div class="Block">
+                <h2>Самые ранние реактивы</h2>
+                <p>МиГ-9</p>
+                <img src="https://aviation21.ru/wp-content/uploads/2022/07/mig-9-1946.jpg"/>
+                <p>Первый советский турбореактивный истребитель созданный в ОКБ Микояна и Гуревича (Сокращённо МиГ) самолёт был революционным для своего времени, но в ВМВ поучавствовать не успел, зато смог задать направление в развитии военпрома СССР</p>
+            </div>
+            <div class="Block">
+                <p>МиГ-15</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Mikoyan_MiG-15%2C_Chino%2C_California.jpg/274px-Mikoyan_MiG-15%2C_Chino%2C_California.jpg">
+                <p>МиГ-15 продолжает менять представление об авиации, у крыльев появляется стреловидность, а самолёт всё больше и больше начинает выглядеть как современный на вооружении был с 1949г. по 2006г. использовался в ряде конфликтов: Гражданская война в Китае, Корейский конфликт и т. д.</p>
+            </div>
+            <div class="Block">
+                <p>МиГ-21</p>
+                <img src="https://topwar.ru/uploads/posts/2014-11/1416974983_1280x800_mig_21_pfm_bulgarian_air_force-1209013.jpg">
+                <p>МиГ-21 Также изменил представление об авиации, на МиГ-21 были установлены самонаводящиеся ракеты и радар "Сапфир", который помогал пилоту в поиске и сопровождении цели. На МиГ-21 использовались самые первые управляемые ракеты класса воздух-воздух в двух экземплярах: с тепловой (ИК) головкой самонаведения и полуактивной(ПАРЛ) ГСН. Ракеты с ПАРЛ ГСН наводились по захвату радара, и могли игнорировать популярные в то время тепловые ловушки (хотя актуальности тепловые ловушки до сих пор не утратили) используется с 1959г.</p>
+            </div>
+            <div class="Block">
+                <p>МиГ-23 / МиГ-27</p>
+                <img src="https://rostec.ru/upload/iblock/0f9/hprv9vyuum20krpqt7tfa0hrkww1ikl8.jpg"/>
+                <p>Из-за недостаточного места для более совершенной бортовой РЛС на МиГ-21, в ОКБ МиГ поступил заказ на новый самолёт. На самолёт установили сложный механизм изменяемой стреловидности. Сложнось заключалась в том, что крыло могло просто оторватся. Конструкторам приходилось очень хорошо работать над подвижными частями, взамен за такую мудрёность самолёт мог быстро лететь на сложенном крыле и не уходить в сваливание на развёрнутом вооружался самолёт шестью <span class="RedText">Р-60</span> или 4 <span class="RedText">Р-60</span> и 2 <span class="BlueText">Р-23Р/Т</span> или <span class="BlueText">Р-24Р/Т</span>. Где <span class="RedText">Р-60</span> - ракеты ближнего боя, а <span class="BlueText">Р-23</span> и <span class="BlueText">Р-24</span> дальнего (Среднего). После <span class="BlueText">Р-23</span> и <span class="BlueText">Р-24</span>, индекс Т - обозначает тепловые (ИК), а индекс Р - Радарные. На самолёт установили РЛС с режимом поиска движущихся целей, который мог игнорировать помехи у земли. МиГ-27 был точной копией МиГ-23, но без радара, да и заточен МиГ-27 больше под штурмовку, для борьбы с авиацией врага оставались только <span class="RedText">Р-60</span>. Начало эксплуатации 1969, частично ещё используется, но мало где.</p>
+            </div>
+            <div class="Block">
+                <p>МиГ-25</p>
+                <img src="https://rg.ru/uploads/images/221/08/16/Russian_Air_Force_MiG-25_d_850.jpg">
+                <p>МиГ-25 - Истребитель-перехватчик, история его создания довольно интересна. В конце 50-ых годов, американци представили высотный сверхзвуковой бомбардировщик B-58 и XB-70"Валькирия", которые были способны развивать скорость 3 маха (3 скорости звука). У СССР не было чем ответить на такую угрозу, ракеты пущенные с земли летят ненамного быстрее вышеупомянутых самолётов и сбить бомбардировщики в штатных ситуациях. Для этого в КБ Микояна и Гуревича поступил гос. заказ на серийные самолёты для защиты неба. Конструкция планера на 80 % состоит из нержавеющей стали, 11 % приходится на алюминиевые сплавы, 8 % титан и лишь 1 % на другие материалы. Очень нестандартные материалы были обусловлены тем, что на скорости в 3 маха, температура у носового обтекателя составляет 4000 градусов по цельсию. На самолёт устанавливались ракеты как для ближней, так и для средней дистанции, до 4 штук. (<span class="BlueText">Р-40(Р/Т)</span> и <span class="RedText">Р-60)</span>. В своё время появление самолёта очень сильно озадачило страны НАТО. Но после того как они изучили этот самолёт, они поняли что в действительности он не настолько хорош. А для рыночной экономики НАТО он был неподъёмным. 1964-2013</p>
+            </div>
+            <div class="Title">Увеличивать страницу в объёме смысла нет, а на этом пожалуй всё!</div>
+        </div>
+    </body>
+</html>

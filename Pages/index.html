@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <title>The_EnG1nE / bahhbash</title>
+	<link type="text/css" href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet"/>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+</head>
+<body>
+    <div class="main">
+        <h1 class="MainTitle">
+            The_EnG1nE (bahhbash)
+        </h1>
+        
+        <div class="TextBlock">
+            <h1>
+                Про истребительную авиацию
+            </h1>
+        </div>
+    
+        <div class="block">
+            <a href="/plane">
+                <img src="https://rostec.ru/upload/iblock/0f9/hprv9vyuum20krpqt7tfa0hrkww1ikl8.jpg"/>
+            </a>
+        </div>
+
+        <div class="TextBlock">
+            <h1>
+                Лабиринт (игра)
+            </h1>
+        </div>
+
+        <div class="block">
+                <a href="/maze">
+                <img src=" {{ url_for('static', filename='img/Maze.png') }}"/>
+            </a>
+        </div>
+        
+        <div class="TextBlock">
+            <h1>
+                Моя группа в вк с играми
+            </h1>
+        </div>
+
+        <div class="block">
+            <a href="https://vk.com/the_eng1ne_game_studio">
+                <img src="{{url_for('static', filename='img/VK.png')}}"/>
+            </a>
+        </div>
+
+        <div class="TextBlock">
+            <h1>
+                Мой Youtube канал
+            </h1>
+        </div>
+
+        <div class="block">
+            <a href="https://www.youtube.com/c/TheEnG1eNbaHHbaSh_OR1G1NAJL">
+                <img src="{{ url_for('static', filename='img/TownLogo.png') }}"/>
+            </a>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,25 @@
+<head>
+    <title>
+        Maze
+    </title>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link type="text/css" href="{{ url_for('static', filename='css/Lmain.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static', filename='js/Maze.js')}}"></script>
+</head>
+<body>
+    <div class="Content" style="display: flex; justify-content: space-between;">
+        <a href="/">
+            <p>
+                Назад
+            </p>
+        </a>
+        <a href="https://www.mediafire.com/file/mxfhmrverkw8xr0/maze_game_0.7_31.10.21.zip/file">
+            <p>
+                Оригинал игры
+            </p>
+        </a>
+    </div>
+    <div class="Main" style="text-align: center;">
+        <canvas id="board"></canvas>
+    </div>
+</body>

@@ -1,0 +1,82 @@
+.MainTitle{
+    color: rgb(207, 145, 0);
+    font-size: 50px;
+    text-shadow: black 1px 1px 3px;
+}
+body{
+    background-color: rgb(50, 50, 50);
+    color: rgb(200, 200, 200);
+    background-image: linear-gradient(rgb(192, 202, 113), rgb(18, 105, 122), gray, rgb(84, 84, 84), rgb(176, 35, 119), black, black);
+}
+.Title{
+    background: rgb(62, 49, 122);
+    border: 5px yellowgreen outset;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+    color: white;
+    font-size: 40px;
+    padding: 4mm;
+    margin-bottom: 3%;
+}
+
+.block{
+    background-color: rgba(50, 0, 50, .3);
+    color: white;
+    border: 9px rgb(146, 0, 187) ridge;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+    color: white;
+    font-size: 20px;
+    padding: 4mm;
+    margin-bottom: 1%;
+    width: 70%;
+
+    text-align: center;
+    
+}
+
+.TextBlock{
+    background-color: rgba(50, 0, 50, .4);
+    color: white;
+    border: 6px rgb(100, 0, 128) ridge;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+    color: white;
+    font-size: 20px;
+    padding: 4mm;
+    margin-top: 10%;
+    margin-bottom: 1%;
+    width: 70%;
+
+    text-align: center;
+}
+
+.main{
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.RedText{
+    color: red;
+}
+.BlueText{
+    color: aqua;
+}
+img{
+    width: 100%;
+}
+::selection{
+    background: black;
+    color: white;
+}
