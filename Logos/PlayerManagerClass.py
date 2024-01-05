@@ -19,7 +19,8 @@ class PlayerBD:
 
     def Register(self, username, password):
         self.Event()
-        self.BD[username] = [password, []]
+        Screen = 2
+        self.BD[username] = [password, Screen, []]
 
     def SaveDataFile(self):
         with open(self.filename, "w", -1, "utf-8") as file:

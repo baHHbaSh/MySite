@@ -1,6 +1,13 @@
 from flask import Flask, url_for, render_template, request, send_from_directory
 
+from Logos.PlayerManagerClass import PlayerBD
+
+BD = PlayerBD("d")
+
 app = Flask(__name__, static_folder="", template_folder="")
+
+def ReGet(key:str, default=None) -> (str | None):
+	return request.headers.get(key, default)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -20,6 +27,21 @@ def plane():
 ... def profile(username): pass
 """
 
+#LogosBlock
+@app.route("/logos", methods=['GET', 'POST'])
+def Logos():
+    return render_template(url_for("static", filename="pages/Logos.html"))
 
+@app.route("/logos/login", methods=['GET', 'POST'])
+def LogosLogin():
+    Login = ReGet("nick")
+    Password = ReGet("pass")
+    BD.Login(Login, Password)
+
+@app.route("/logos/register", methods=['GET', 'POST'])
+def LogosRegister():
+    Login = ReGet("nick")
+    Password = ReGet("pass")
+    BD.Register(Login, Password)
 
 app.run(debug=False, port=5000)

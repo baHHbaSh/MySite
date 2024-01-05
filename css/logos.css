@@ -1,0 +1,19 @@
+body{
+    background-image: linear-gradient(rgb(254, 211, 255), rgb(168, 0, 168), purple, rgb(69, 0, 69), rgb(178, 0, 178),black) !important
+}
+.Main{
+    display: flex !important;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center !important;
+}
+.BigText{
+    font-size: 1000%;
+}
+.LogosView{
+    font-size: 1000%;
+    color: transparent !important;
+    background-clip: text !important;
+    background: linear-gradient(to top, purple, rgb(45, 0, 45), purple);
+    -webkit-text-stroke: .5px rgb(35, 0, 31);
+}
