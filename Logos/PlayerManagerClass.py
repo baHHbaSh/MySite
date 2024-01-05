@@ -9,18 +9,21 @@ class PlayerBD:
     def __init__(self, filename) -> None:
         self.filename = filename
 
-    def Login(self, username, password):
+    def Login(self, username, password) -> int:
         self.Event()
         if username in self.BD:
             if self.BD[username][0] == password:
-                return True
-            return 1
-        return 0
+                return f"{self.BD[username][1]}"
+            return "Bad password"
+        return "Bad username"
 
-    def Register(self, username, password):
+    def Register(self, username, password) -> int:
         self.Event()
         Screen = 2
-        self.BD[username] = [password, Screen, []]
+        if not username in self.BD:
+            self.BD[username] = [password, Screen, []]
+            return "Complite"
+        return f"User with username {username}"
 
     def SaveDataFile(self):
         with open(self.filename, "w", -1, "utf-8") as file:

@@ -36,12 +36,13 @@ def Logos():
 def LogosLogin():
     Login = ReGet("nick")
     Password = ReGet("pass")
-    BD.Login(Login, Password)
+    return BD.Login(Login, Password)
 
 @app.route("/logos/register", methods=['GET', 'POST'])
 def LogosRegister():
     Login = ReGet("nick")
     Password = ReGet("pass")
-    BD.Register(Login, Password)
+    return BD.Register(Login, Password)
+
 
 app.run(debug=False, port=5000)

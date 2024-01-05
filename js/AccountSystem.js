@@ -7,3 +7,6 @@ function GetData() {
 function ClearData(){
     window.localStorage.clear();
 }
+function GetScreenOnAccount(){
+    fetch("/logos/login")
+}
