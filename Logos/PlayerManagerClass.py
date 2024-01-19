@@ -8,28 +8,37 @@ class PlayerBD:
     BD = {}
     def __init__(self, filename) -> None:
         self.filename = filename
+        self.LoadDataFile()
 
     def Login(self, username, password) -> int:
         self.Event()
         if username in self.BD:
             if self.BD[username][0] == password:
                 return f"{self.BD[username][1]}"
-            return "Bad password"
-        return "Bad username"
+            return "Неправильный пароль"
+        return "Логин не обнаружен"
 
     def Register(self, username, password) -> int:
         self.Event()
         Screen = 2
         if not username in self.BD:
             self.BD[username] = [password, Screen, []]
-            return "Complite"
-        return f"User with username {username}"
+            return "+"
+        return f"Пользователь с именем {username} уже существует"
 
+    def SetScreen(self, screen, username, password) -> None:
+        if username in self.BD:
+            if self.BD[username][0] == password:
+                if not screen in ["0", "1"]:
+                    self.BD[username][1] = screen
+                else:
+                    self.BD[username][1] = "2"
     def SaveDataFile(self):
         with open(self.filename, "w", -1, "utf-8") as file:
             Text = self.Cipher(str(self.BD), True)
             Text = Text.replace("'", '"')
             file.write(Text)
+        print(self.BD)
 
     def LoadDataFile(self):
         LastTime = time()
@@ -44,6 +53,7 @@ class PlayerBD:
             print(Text)
     
     def Event(self):
+        global LastTime
         if LastTime + 600 < time():
             LastTime = time()
             self.SaveDataFile()
@@ -66,7 +76,6 @@ class PlayerBD:
     
 if __name__ == "__main__":
     App = PlayerBD("d")
-    App.LoadDataFile()
     print(App.Login("Nya", "Lol"))
     print(App.Login("Nay", "Me0w"))
     print(App.Login("Nya", "Me0w"))

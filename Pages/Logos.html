@@ -6,7 +6,45 @@
     <script src="{{url_for('static', filename='js/Logos.js')}}"></script>
 </head>
 <body>
-    <div class="Main">
-        <h1 class="LogosView">Logos</h1>
+    <div class="UpButtons">
+        <button class="SumbitButton" id="ToMainMenu">🏠</button>
+        <button class="SumbitButton" id="BTL">📲</button>
+    </div>
+    <div class="SubBody">
+        <div id="1">
+            <div class="Main">
+                <h1 class="LogosView">Logos</h1>
+                <div class="SubFrame">
+                    <h1 id="LLoger">Логин</h1>
+                    <input maxlength="15" minlength="2" id="LLogin" placeholder="Логин"/>
+                    <input maxlength="15" minlength="2" type="password" id="LPassword" placeholder="Пароль"/>
+                    <button class="SumbitButton" id="LEnter">Вход</button>
+                    <button class="SumbitButton" id="ToReg">Зарегистрироваться</button>
+                </div>
+            </div>
+        </div>
+        <div id="2">
+            <div class="Main">
+                <h1 class="LogosView">Logos</h1>
+                <div class="SubFrame">
+                    <h1 id="RLoger">Регистрация</h1>
+                    <input id="RLogin" placeholder="Логин"/>
+                    <input maxlength="15" minlength="2" type="password" id="RPassword" placeholder="Пароль"/>
+                    <input maxlength="15" minlength="2" type="password" id="RDPassword" placeholder="Повторение пароля"/>
+                    <button class="SumbitButton" id="REnter">Вход</button>
+                    <button class="SumbitButton" id="ToLog">Уже зарегистрирован</button>
+                </div>
+            </div>
+        </div>
+        <div id="3">
+            <div class="Main">
+                <h1 class="LogosView">Logos</h1>
+                <div class="SubFrame">
+                    <button disabled class="SumbitButton" id="BaseGame">Уровни</button>
+                    <button disabled class="SumbitButton" id="LevelEditor">Редактор уровней</button>
+                    <button disabled class="SumbitButton" id="OtherLevels">Уровни игроков</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
