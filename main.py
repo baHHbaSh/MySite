@@ -1,6 +1,7 @@
 from flask import Flask, url_for, render_template, request, send_from_directory, Response
 
 from Logos.PlayerManagerClass import PlayerBD
+from Logos.LevelManeger import LevelManeger
 
 BD = PlayerBD("d")
 

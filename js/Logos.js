@@ -2,7 +2,7 @@ StatusList = {
     Login:0,
     Register:1,
     MainMenu:2,
-    InBaseGameList:3,
+    BaseGameList:3,
     GameEditorList:4,
     InPublicGameList:5,
     GameEditor:6,
@@ -20,6 +20,7 @@ let LPassword;
 let RLogin;
 let RPassword;
 let RDPassword;
+let Editor;
 
 let D = [];
 
@@ -41,6 +42,8 @@ ToLogin = document.querySelector("#BTL");
 BaseGame = document.querySelector("#BaseGame");
 LevelEditor = document.querySelector("#LevelEditor");
 OtherLevels = document.querySelector("#OtherLevels");
+
+Editor = document.querySelector("#Editor");
 
 LLogin = document.querySelector("#LLogin");
 LPassword = document.querySelector("#LPassword");
@@ -75,6 +78,9 @@ REnter.addEventListener("click", ()=>{
     }
     Registration(RLogin.value, RDPassword.value, RLog)
 });
+BaseGame.addEventListener("click", ()=>{
+    Status = StatusList.BaseGameList; ScreenUpdate();
+});
 ToLogin.addEventListener("click", ()=>{
     Status = StatusList.Login; ScreenUpdate();
 });
@@ -82,7 +88,7 @@ ToMainMenu.addEventListener("click", ()=>{
     Status = StatusList.MainMenu;
     ScreenUpdate();
 });
-["1","2","3"].forEach((Did, index) => D.push(document.getElementById(Did)))
+["1","2","3","4","5","6","7","8"].forEach((Did, index) => D.push(document.getElementById(Did)))
 ScreenUpdate();
 }
 function HideAllD(){

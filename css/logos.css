@@ -75,9 +75,21 @@ input::placeholder{
 .SumbitButton:disabled{
     background-color: rgb(116, 0, 0);
 }
-LevelsList{
-
-}
-LevelPreview{
+.LevelsList{
     display: flex;
+    flex-direction: column-reverse;
+}
+.LevelPreview{
+    display: flex;
+}
+.LogosButton{
+    background: white;
+    min-height: 10px;
+    min-height: 10px;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+}
+#Editor{
+    
 }
