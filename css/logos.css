@@ -90,6 +90,15 @@ input::placeholder{
     width: 100%;
     height: 100%;
 }
-#Editor{
-    
+.v{
+    display: flex;
+    flex-direction: column;
+}
+.h{
+    display: flex;
+    flex-direction: row;
+}
+#square{
+    display: grid !important;
+    aspect-ratio: 1/1;
 }

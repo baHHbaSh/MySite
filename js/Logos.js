@@ -43,13 +43,16 @@ BaseGame = document.querySelector("#BaseGame");
 LevelEditor = document.querySelector("#LevelEditor");
 OtherLevels = document.querySelector("#OtherLevels");
 
-Editor = document.querySelector("#Editor");
+Square = document.querySelector("#square");
 
 LLogin = document.querySelector("#LLogin");
 LPassword = document.querySelector("#LPassword");
 RLogin = document.querySelector("#RLogin");
 RPassword = document.querySelector("#RPassword");
 RDPassword = document.querySelector("#RDPassword");
+
+ButtonsListEditor = [[]];
+EditorValues = [[0]];
 
 Object.defineProperty(window, 'IsLogin', {
     get: () => IsLoginValue,
@@ -100,4 +103,66 @@ function ScreenUpdate(){
     D[+Status].style.display = "block"
     data = GetData();
     SendScreen(data[0], data[1], +Status);
+}
+
+function EditorClear(){
+    ButtonsListEditor = [[]];
+    EditorValues = [[0]];
+}
+
+function range(start, end) {
+    var ans = [];
+    for (let i = start; i < end; i++) {
+        ans.push(i);
+    }
+    return ans;
+}
+
+function EditorRegenerateGrid(){
+    ButtonsListEditor.forEach( (List) => {List.forEach( (Button) => {Button.remove()})})
+
+    //Высчет увеличения длинны для бесконечной сетки
+    AddUp = false;
+    AddDown = false;
+    AddLeft = false;
+    AddRight = false;
+    
+    for (let y = 0; y < EditorValues.length; y++){
+        for (let x = 0; x < EditorValues[y].length; x++){
+            if (EditorValues[y][x] != 0){
+                if (AddUp == false && y==0){
+                    AddUp = true
+                }
+                if (AddLeft == false && x==0){
+                    AddLeft = true
+                }
+                if (AddRight == false && x==EditorValues[y].length-1){
+                    AddRight = true;
+                }
+                if (AddDown == false && y==EditorValues.length-1){
+                    AddDown = true
+                }
+            }
+        }
+    }
+    if (AddLeft){
+        forEach(SList=>{SList.unshift(0)})
+    }
+    if (AddRight){
+        forEach(SList=>{SList.push(0)})
+    }
+    MyList = []
+    for (;MyList.length!=EditorValues[0].length; MyList.push(0)){}
+
+    if (AddDown){
+        EditorValues.push(MyList)
+    }
+    if (AddUp){
+        EditorValues.unshift(MyList)
+    }
+    //Тебе осталось доделать генерацию по спискам цифер
+}
+
+function EditorButtonLogic(){
+
 }
