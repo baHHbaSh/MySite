@@ -3,8 +3,12 @@ from flask import Flask, url_for, render_template, request, send_from_directory,
 from Logos.PlayerManagerClass import PlayerBD
 from Logos.LevelManeger import LevelManeger
 
+from PlaneOnline.PlayerManagerClass import PlayerBD as PlaneBD
+
 
 BD = PlayerBD("d")
+
+PBD = PlayerBD("p")
 
 app = Flask(__name__, static_folder="", template_folder="")
 
@@ -15,13 +19,27 @@ def ReGet(key:str, default=None) -> (str | None):
 def index():
 	return render_template(url_for("static", filename="pages/index.html"))
 
+
+
+
+
 @app.route("/maze", methods=['GET', 'POST'])
 def maze():
 	return render_template(url_for("static", filename="pages/Maze.html"))
 
+
+
+
+
 @app.route("/plane", methods=['GET', 'POST'])
 def plane():
 	return render_template(url_for("static", filename="pages/Planes.html"))
+
+
+
+
+
+
 
 #app.add_url_rule("/":path, None, main:function)
 """
@@ -59,6 +77,17 @@ def SendStatus():
 def SaveData():
 	BD.SaveDataFile()
 	return add_header("Success")
+
+
+
+
+@app.route("/plane-online", methods=["GET", "POST"])
+def PlaneOnline():
+	pass
+
+
+
+
 
 def add_header(Text):
 	response = Response(Text)

@@ -1,0 +1,39 @@
+{
+    "Planes":{
+        "P-51":{
+            "MaxSpeed":800,
+            "Drop":110,
+            "hp":100,
+            "LookingF":2000,
+            "LookingAround":600,
+            "AvableSlots":{
+                "Guns":["MG1"],
+                "Engines":["EP1"],
+                "Bombs":["FAB-250"]
+            }
+        }
+    },
+    "Guns":{
+        "MG1":{
+            "Damage":2,
+            "Reload":0.1,
+            "MaxAmmo":1000,
+            "DamageRandom":1
+        }
+    },
+    "Engines":{
+        "EP1":{
+            "Acceleration":70,
+            "FuelMinutes":[3, 30],
+            "Height":[2000, 7000]
+        }
+    },
+    "Bombs":{
+        "FAB-250":{
+            "Mass":500,
+            "TnTMass":250,
+            "Radius":200,
+            "RadiusMaxEfficiency":60
+        }
+    }
+}

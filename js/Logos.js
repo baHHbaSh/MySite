@@ -161,6 +161,7 @@ function EditorRegenerateGrid(){
         EditorValues.unshift(MyList)
     }
     //Тебе осталось доделать генерацию по спискам цифер
+    
 }
 
 function EditorButtonLogic(){
