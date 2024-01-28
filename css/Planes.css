@@ -1,0 +1,33 @@
+body{
+    background: rgb(0, 195, 255);
+    font-size: 3vw !important;
+    color: rgb(0, 2, 110);
+    -webkit-text-stroke: 1px rgb(42, 0, 0);
+}
+.main{
+    margin: 10%;
+}
+.SumbitButton{
+    height: 100px;
+    border-radius: 20px !important;
+    background-color: rgb(21, 112, 0);
+    color: white;
+    font-size: 200%;
+}
+.SumbitButton:disabled{
+    background-color: rgb(116, 0, 0);
+}
+.SubFrame{
+    display: flex !important;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center !important;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+
+}
+.SubFrame *{
+    margin: 30px;
+    width: calc(100% - 60px);
+    height: auto;
+}

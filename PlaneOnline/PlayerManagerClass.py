@@ -20,8 +20,8 @@ class PlayerBD:
 
     def Register(self, username, password) -> int:
         self.Event()
-        BaseInventory = {"Planes":["P-51"],"gun":["mgun1"],"engine":["E1P"]}
-        SelectedSetup = ["P-51","MG1","E1P",[20, 6000]]
+        BaseInventory = {"Planes":["P-51"],"gun":["MG1"],"engine":["EP1"]}
+        SelectedSetup = ["P-51","MG1","EP1",[20, 6000]]
         Money = 10_000
         if not username in self.BD:
             self.BD[username] = [password, BaseInventory, SelectedSetup, Money]

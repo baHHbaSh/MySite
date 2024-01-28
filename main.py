@@ -83,7 +83,7 @@ def SaveData():
 
 @app.route("/plane-online", methods=["GET", "POST"])
 def PlaneOnline():
-	pass
+	return render_template(url_for("static", filename="pages/PlaneOnline.html"))
 
 
 
