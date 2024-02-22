@@ -146,10 +146,10 @@ function EditorRegenerateGrid(){
         }
     }
     if (AddLeft){
-        forEach(SList=>{SList.unshift(0)})
+        EditorValues.forEach(SList=>{SList.unshift(0)})
     }
     if (AddRight){
-        forEach(SList=>{SList.push(0)})
+        EditorValues.forEach(SList=>{SList.push(0)})
     }
     MyList = []
     for (;MyList.length!=EditorValues[0].length; MyList.push(0)){}
@@ -161,7 +161,26 @@ function EditorRegenerateGrid(){
         EditorValues.unshift(MyList)
     }
     //Тебе осталось доделать генерацию по спискам цифер
-    
+    for (let y = 0; y < EditorValues.length; y++){
+        for (let x = 0; x < EditorValues[y].length; x++){
+            button = document.createElement("button");
+            button.class = EditorValues[y][x];
+            button.id = x+";"+y;
+            parentSize = Square.getBoundingClientRect();
+            button.width = parentSize.width / EditorValues.length;
+            button.height = parentSize.height / EditorValues[y].length;
+            button.addEventListener("click",(self)=>{
+                let el = self.id.split(";");
+                let x = el[0]; let y = el[1];
+                if (EditorValues[y][x] == 0){
+                    EditorValues[y][x] += 1;
+                }
+                (EditorRegenerateGrid)
+            })
+            Square.appendChild(button);
+        }
+    }
+    Square.style.gridTemplateColumns = "1fr".repeat(EditorValues.length);
 }
 
 function EditorButtonLogic(){
