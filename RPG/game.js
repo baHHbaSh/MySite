@@ -10,6 +10,9 @@ function IsTouching(ax,ay,aw,ah, bx,by,bw,bh){
 	if (a_l >= b_r || a_r <= b_l || a_t <= b_b || a_b >= b_t) return false;
 	return true;
 }
+function ObjTouching(obj1, obj2){
+    IsTouching(obj1.x, obj1.y, obj1.w)
+}
 TileId = [
     "Grass",
     "Road",
@@ -61,6 +64,11 @@ function BoolActive(key){
 
 class Game{
     constructor(){
+        if(window.innerWidth < window.innerHeight){
+            setTimeout(StartGame, 500)
+            return
+        }
+        document.body.removeChild(document.querySelector("#fdel"))
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         document.body.appendChild(this.canvas);
@@ -115,17 +123,28 @@ class Game{
 }
 class Object{
     constructor(x, y, width, height){
-
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    get w(){
+        return this.width;
+    }
+    set w(value){
+        this.width = value;
+    }
+    get h(){
+        return this.height;
+    }
+    set h(value){
+        this.height = value;
     }
 }
 
 class ImageObject extends Object{
     constructor(x, y, width, height, img){
         super(x, y, width, height)
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
         this.SetImage(img);
     }
     Render(ctx){
@@ -146,7 +165,7 @@ class ImageObject extends Object{
 
 class MapObject extends ImageObject{
     constructor(CellX, CellY, id){
-        let CSize = 256
+        let CSize = 100
         super(CellX * CSize++, CellY * CSize++, CSize, CSize, TileImages[id])
     }
     SetId(NewId){
@@ -157,7 +176,7 @@ class MapObject extends ImageObject{
 class PlayerObject extends ImageObject{
     constructor(SpawnPoint){
         super(0, 0, 50, 100, "https://encycolorpedia.ru/00008b.png");
-        this.Speed = 5
+        this.Speed = 3
     }
     Move(){
         if (Shift){
@@ -175,4 +194,10 @@ class PlayerObject extends ImageObject{
     }
 }
 
-let Application = new Game()
+let Application;
+
+function StartGame(){
+    Application = new Game();
+}
+
+StartGame()
