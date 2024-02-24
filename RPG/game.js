@@ -13,6 +13,14 @@ function IsTouching(ax,ay,aw,ah, bx,by,bw,bh){
 function ObjTouching(obj1, obj2){
     return IsTouching(obj1.x, obj1.y, obj1.w, obj1.h, obj2.x, obj2.y, obj2.w, obj2.h);
 }
+
+const Direction = {
+    w:0,
+    d:1,
+    s:2,
+    a:3
+}
+
 TileId = [
     "Grass",
     "Road",
@@ -109,7 +117,6 @@ class Game{
         }
         MapBuild(){
             let map = Application.MapRange;
-            console.log(map)
             for(let y=0; y < map.length; y++){
                 let tmp = []
                 for(let x=0; x < map[y].length; x++){
@@ -226,29 +233,36 @@ class MapObject extends ImageObject{
 
 class PlayerObject extends ImageObject{
     constructor(SpawnPoint){
-        super(0, 0, 50, 100, "https://encycolorpedia.ru/00008b.png");
+        super(0, 0, 48, 64, "/RPG/tile/p");
         this.BPos = {x: 0, y: 0}
-        this.Speed = 100
+        this.Speed = 100;
+        this.AnimationFrame = 0;
+        this.Direction = Direction.s;
     }
     MoveX(){
         if (Shift){
-            if(A){this.x-=this.Speed * dt;}
-            if(D){this.x+=this.Speed * dt;}
+            if(A){this.x-=this.Speed * dt; this.Direction = Direction.a; this.AnimationFrame += dt}
+            else if(D){this.x+=this.Speed * dt; this.Direction = Direction.d; this.AnimationFrame += dt}
         }
         else{
-            if(A){this.x-=this.Speed * 2 * dt;}
-            if(D){this.x+=this.Speed * 2 * dt;} 
+            if(A){this.x-=this.Speed * 2 * dt; this.Direction = Direction.a; this.AnimationFrame += dt * 3}
+            else if(D){this.x+=this.Speed * 2 * dt; this.Direction = Direction.d; this.AnimationFrame += dt * 3}
         }
     }
     MoveY(){
         if (Shift){
-            if(W){this.y-=this.Speed * dt;}
-            if(S){this.y+=this.Speed * dt;}
+            if(W){this.y-=this.Speed * dt; this.Direction = Direction.w; this.AnimationFrame += dt}
+            else if(S){this.y+=this.Speed * dt; this.Direction = Direction.s; this.AnimationFrame += dt}
         }
         else{
-            if(W){this.y-=this.Speed * 2 * dt;}
-            if(S){this.y+=this.Speed * 2 * dt;}
+            if(W){this.y-=this.Speed * 2 * dt; this.Direction = Direction.w; this.AnimationFrame += dt * 3}
+            else if(S){this.y+=this.Speed * 2 * dt; this.Direction = Direction.s; this.AnimationFrame += dt * 3}
         }
+    }
+    
+    Render(ctx){
+        if(Math.round(this.AnimationFrame) >= 3) this.AnimationFrame -= 3
+        ctx.drawImage(this.img, 48 * Math.round(this.AnimationFrame), 64 * this.Direction, 48, 64, this.x, this.y, this.width, this.height)
     }
 }
 
