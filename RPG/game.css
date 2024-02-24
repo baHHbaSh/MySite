@@ -3,6 +3,10 @@ body{
     height: 100vh;
     overflow: hidden;
     margin: 0px 0px 0px 0px;
+    background: black !important;
+}
+p{
+    color: white !important;
 }
 /*
 TileId = [
