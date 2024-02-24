@@ -49,7 +49,7 @@ function ImageLoad(path){
 
 TileImages = []
 
-Array("0", "1", "2", "3", "4", "5", "6", "7", "8").forEach(
+Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9").forEach(
     (name)=>{
         TileImages.push(ImageLoad("/RPG/tile/"+name))
     }
