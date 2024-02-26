@@ -7,6 +7,7 @@ from RPG.PlayerManagerClass import PlayerBD as RPGBD
 
 from PlaneOnline.PlayerManagerClass import PlayerBD as PlaneBD
 
+import os
 
 BD = PlayerBD("d")
 
@@ -17,7 +18,7 @@ RBD = PlayerBD("r")
 
 app = Flask(__name__, static_folder="", template_folder="")
 
-def ReGet(key:str, default=None) -> (str | None):
+def ReGet(key:str, default=None):
 	return request.headers.get(key, default)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -89,7 +90,7 @@ def SaveData():
 def PlaneOnline():
 	return render_template(url_for("static", filename="pages/PlaneOnline.html"))
 
-with open("C:\CodeMaster\Flask\MyMainSite\RPG\Map.txt", encoding="utf-8") as file:
+with open(os.getcwd()+"\RPG\Map.txt", encoding="utf-8") as file:
 	Map = file.read()
 
 @app.route("/RPG", methods=["GET", "POST"])
@@ -98,12 +99,18 @@ def RPG():
 
 @app.route('/RPG/tile/<number>')
 def image(number):
-	if len(number) != 1: return
-	return send_file(f'C:/CodeMaster/Flask/MyMainSite/RPG/tiles/{number}.png',  mimetype='image/png')
+	if len(number) != 1 and len(number) != 2: return
+	return send_file(os.getcwd()+f'/RPG/tiles/{number}.png',  mimetype='image/png')
 
 @app.route("/RPG/Map", methods=["GET", "POST"])
 def GetMap():
-	return add_header(Map)
+	return add_header(Map) 
+
+class PlayerRPG:
+	def __init__(self):
+		self.pos = (0,0)
+		self.Ammunition = ""
+		self.Weapon = ""
 
 def add_header(Text):
 	response = Response(Text)
