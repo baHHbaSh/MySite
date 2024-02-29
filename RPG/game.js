@@ -84,7 +84,7 @@ class Game{
             setTimeout(StartGame, 500)
             return
         }
-        document.body.removeChild(document.querySelector("#fdel"))
+        document.body.removeChild(document.querySelector("#fdel"));
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         document.body.appendChild(this.canvas);
@@ -271,5 +271,3 @@ let Application;
 function StartGame(){
     Application = new Game();
 }
-
-StartGame()
