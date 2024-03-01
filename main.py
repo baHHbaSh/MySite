@@ -90,7 +90,7 @@ def SaveData():
 def PlaneOnline():
 	return render_template(url_for("static", filename="pages/PlaneOnline.html"))
 
-with open(os.getcwd()+"\RPG\Map.txt", encoding="utf-8") as file:
+with open(os.getcwd()+"/RPG/Map.txt", encoding="utf-8") as file:
 	Map = file.read()
 
 @app.route("/RPG", methods=["GET", "POST"])
