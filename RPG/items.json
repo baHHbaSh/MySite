@@ -1,12 +1,13 @@
 {
     "weapons":{
-        "0":{"name": "Нож", "damage":60, "type":"sword", "distance":50, "ammo":[], "img":""},
+        "0":{"name": "Нож", "damage":50, "type":"sword", "distance":50, "ammo":[], "img":""},
         "1":{"name": "Мосинка", "damage":30, "type":"gun", "distance":2000, "ammo":["0"], "img":""},
         "2":{"name": "Меч", "damage":100, "type":"sword", "distance":100, "img":""}
     },
     "support":{
-        "0":{"name": "Вода байкальская", "effect":{"HP":1.5, "damage":1, "speed":0.5}, "img":""},
-        "1":{"name": "Ошибка кода", "effect":{"damage":1.3, "speed":0, "HP":1.05}, "img":""}
+        "0":{"name":"Оксид кислорода", "effect":{"armor":0.75, "damage":1, "speed":1.2}},
+        "1":{"name": "Вода байкальская", "effect":{"armor":1.5, "damage":1, "speed":0.5}, "img":""},
+        "2":{"name": "Ошибка кода", "effect":{"damage":1.3, "speed":0, "armor":1.05}, "img":""}
     },
     "ammo":{
         "0":{"name": "Пуля", "damage":30, "img":""}

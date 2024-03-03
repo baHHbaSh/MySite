@@ -41,6 +41,8 @@ S = false
 D = false
 Shift = false
 
+let NickName = prompt("Введите ник")
+
 let dt = 0;
 
 let LastTime = 0;
@@ -96,6 +98,7 @@ class Game{
         
         this.MapObjects = [];
         this.MapRange = [];
+        this.canvas.addEventListener("click", this.Player.Shoot)
         fetch("/RPG/Map").then(Response => {return Response.text();})
         .then(data => {
             let tmp = data.split("\n");
@@ -114,6 +117,7 @@ class Game{
             
             LastTime = GetTime()
             setInterval(this.Update, 1000/60);
+            setInterval(this.UpdateOnline, 100)
         }
         MapBuild(){
             let map = Application.MapRange;
@@ -124,6 +128,14 @@ class Game{
                 }
                 Application.MapObjects.push(tmp);
             }
+    }
+    UpdateOnline(){
+        fetch("/RPG/GetData", {
+            headers:{"nick":NickName, "weapon":Application.Player.weapon, "ammunition":Application.Player.ammunition, "x":Application.Player.x, "y":Application.Player.y, "af":Math.round(Application.Player.AnimationFrame), "d":Application.Player.Direction}
+        }).then(Response => {return Response.text();})
+        .then(data => {
+            //ОтриовОЧКА
+        })
     }
     Update(){
         dt = GetTime() - LastTime;
@@ -238,6 +250,11 @@ class PlayerObject extends ImageObject{
         this.Speed = 100;
         this.AnimationFrame = 0;
         this.Direction = Direction.s;
+        this.weapon = "0"
+        this.ammunition = "0"
+    }
+    Shoot(){
+        fetch("/RPG/shoot", {headers:{"nick":NickName}})
     }
     MoveX(){
         if (Shift){
@@ -266,8 +283,15 @@ class PlayerObject extends ImageObject{
     }
 }
 
+class NPC extends PlayerObject{
+    constructor(){
+
+    }
+}
+
 let Application;
 
 function StartGame(){
     Application = new Game();
 }
+StartGame()
