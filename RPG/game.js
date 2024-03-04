@@ -285,7 +285,7 @@ class PlayerObject extends ImageObject{
 
 class NPC extends PlayerObject{
     constructor(){
-
+        
     }
 }
 
