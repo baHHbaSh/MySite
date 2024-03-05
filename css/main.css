@@ -6,7 +6,8 @@
 body{
     background-color: rgb(50, 50, 50);
     color: rgb(200, 200, 200);
-    background-image: linear-gradient(rgb(192, 202, 113), rgb(18, 105, 122), gray, rgb(84, 84, 84), rgb(176, 35, 119), black, black);
+    background-image: linear-gradient(rgb(192, 202, 113), rgb(18, 105, 122), gray, rgb(84, 84, 84),rgb(84, 84, 84),
+    rgb(255, 136, 0), rgb(212, 80, 4), rgb(176, 35, 119), rgb(176, 35, 119), rgb(176, 35, 119), black, black);
 }
 .Title{
     background: rgb(62, 49, 122);

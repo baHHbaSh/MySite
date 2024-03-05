@@ -1,0 +1,57 @@
+html {
+  height: 100%;
+  width: 100%;
+  background-image: url('https://img1.akspic.ru/crops/2/9/6/4/1/114692/114692-ogon-plamya-teplo-ad-apelsin-1920x1080.jpg');
+}
+
+h1 {
+  color: #ffd500;
+  font-size: 70px;
+  text-align: center;
+}
+
+#button {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+}
+
+#txt {
+  position: relative;
+  color: #ffd500;
+  font-size: 25px;
+}
+
+#txt1 {
+  color: #2bff00;
+  font-size: 25px;
+}
+
+#score {
+  color: #000000;
+  font-size: 25px;
+  font-weight: 5px;
+}
+
+#ButtonUpgrader {
+  width: 50px;
+}
+
+#count {
+  position: absolute;
+  margin: 0 auto;
+  border: 5px dotted#ffd500;
+  padding: 10px;
+  width: 200px;
+  background-color: rgb(0, 0, 0, 0.3);
+}
+
+#eco {
+  position: absolute;
+  margin: 0 auto;
+  top: 250px;
+  border: 5px dotted#28f000;
+  padding: 10px;
+  width: 350px;
+  background-color: rgb(0, 0, 0, 0.3);
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link type="text/css" href="{{ url_for('static', filename='FMP/style.css')}}" rel="stylesheet"/>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+
+<body>
+  <h1>Он ещё дышит</h1>
+  <div id="count">
+    <span id="txt"><b>Долларов:</b></span>
+    <span id="score"></span>
+  </div>
+  <div id="eco">
+    <span id="txt1"><b>Улучшить экономику</b></span>
+    <img src="https://cdn-icons-png.flaticon.com/512/5329/5329095.png" draggable="false" id="ButtonUpgrader">
+	  <span id="level"></span>
+  </div>
+
+  <img src="https://cdn-icons-png.flaticon.com/256/1490/1490839.png" draggable="false" id="button">
+  <canvas id="cnv"></canvas>
+  <script src="{{url_for('static', filename='FMP/script.js')}}"></script>
+</body>
+
+</html>

@@ -38,8 +38,10 @@ def plane():
 	return render_template(url_for("static", filename="pages/Planes.html"))
 
 
-
-
+#Подключи к глав странице
+@app.route("/clicker")
+def clicker():
+	return render_template(url_for("static", filename="FMP/index.html"))
 
 
 
