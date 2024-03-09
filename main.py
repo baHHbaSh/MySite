@@ -8,10 +8,13 @@ from PlaneOnline.PlayerManagerClass import PlayerBD as PlaneBD
 import os
 import json
 
+from UsFuture.OBD import HumanBD as FutureBD
+
 BD = PlayerBD("d")
 
 PBD = PlaneBD("p")
 
+FBD = FutureBD()
 
 app = Flask(__name__, static_folder="", template_folder="")
 
@@ -30,8 +33,31 @@ def maze():
 	return render_template(url_for("static", filename="pages/Maze.html"))
 
 
+@app.route("/UsFuture")
+def UFTe():
+	return render_template(url_for("static", filename="UsFuture/index.html"))
 
+@app.route("/UsFuture/login", methods=['GET', 'POST'])
+def UFTeLogin():
+	L = ReGet("login")
+	R = ReGet("pass")
+	print(L, R)
+	return add_header(str(FBD.Login(L, R)))
 
+@app.route("/UsFuture/add_user", methods=['GET', 'POST'])
+def Reg():
+	l = ReGet("nick")
+	r = ReGet("pass")
+	if FBD.Login(l, r) != "Администратор": return
+	lnu = ReGet("nnick")
+	pnu = ReGet("npass")
+	rnu = ReGet("rid")
+	FBD.AddAccount(rnu, lnu, pnu)
+	return ""
+
+@app.route("/UsFuture/logs", methods=['GET', 'POST'])
+def Logs():
+	return f"""<p>{FBD.BD["log"]}</p>""".replace("', '", "================================")
 
 @app.route("/plane", methods=['GET', 'POST'])
 def plane():
@@ -81,6 +107,7 @@ def SendStatus():
 def SaveData():
 	BD.SaveDataFile()
 	return add_header("Success")
+
 
 
 

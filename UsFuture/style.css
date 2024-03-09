@@ -1,0 +1,112 @@
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    min-height: 100vh;
+}
+::selection{
+    color: red !important;
+    background-color: rgb(174, 0, 255) !important;
+}
+.warring{
+    background-color: red;
+    color: black;
+    opacity: .8;
+    text-align: center;
+    margin: 0px;
+}
+.main{
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+button{
+    height: 100px;
+    border-radius: 20px !important;
+    background-color: rgb(21, 112, 0);
+    color: white;
+    font-size: 300%;
+}
+button:disabled{
+    background-color: rgb(116, 0, 0);
+}
+body{
+    background-image: linear-gradient(rgb(0, 17, 168), rgb(134, 0, 151)) !important;
+}
+.SubBody{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.Main{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+.SubFrame{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+
+}
+.SubFrame *{
+    margin: 30px;
+    width: calc(100% - 60px);
+    height: auto;
+}
+.BigText{
+    font-size: 1000%;
+}
+.UpButtons{
+    display: flex !important;
+    justify-content: space-between;
+}
+.LogosView{
+    font-size: 1000%;
+    color: transparent !important;
+    /*gradient*/
+    background-clip: text !important;
+    background: linear-gradient(to top, purple, rgb(45, 0, 45), purple);    
+    z-index: -999;
+    margin: 0%;
+    text-align: center;
+}
+h1{
+    font-size: 10vw !important;
+    color: rgb(153, 0, 180);
+    -webkit-text-stroke: 1px rgb(42, 0, 37);
+}
+select, input{
+    border: 20% rgb(30, 0, 74);
+    border-radius: 20px !important;
+    font-size: 300%;
+    background-color: rgb(42, 0, 37);
+    color: white;
+    text-align: center;
+}
+select, input:-internal-autofill-selected{
+    background-color: rgb(42, 0, 37);
+    color:white;
+    font-size: 300%;
+    text-align: center;
+}
+select, input::placeholder{
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+.LogosButton{
+    background: white;
+    min-height: 10px;
+    min-height: 10px;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+}

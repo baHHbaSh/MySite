@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    <title>Олимпиада "Наше будущее"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='UsFuture/style.css')}}" type="text/css"/>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+<body>
+    <p class="warring">Все недочёты списываются на факт олимпиады</p>
+    <div class="UpButtons">
+        <button class="SumbitButton" id="s0">🏠</button>
+        <button class="SumbitButton" id="s1">📲</button>
+    </div>
+    <div class="SubBody">
+        <div id="0" class="Main">
+            <h1 class="LogosView">Меню</h1>
+            <div class="SubFrame">
+                <button id="ToAuth">К авторизации</button>
+                <button disabled id="ToJob">Работникам</button>
+            </div>
+        </div>
+        <div id="1" class="Main">
+            <h1 class="LogosView">Авторизация</h1>
+            <div class="SubFrame">
+                    <input maxlength="15" minlength="2" id="l" placeholder="Логин"/>
+                    <input maxlength="15" minlength="2" type="password" id="p" placeholder="Пароль"/>
+                    <button class="SumbitButton" id="Enter">Вход</button>
+            </div>
+        </div>
+        <div id="2" class="Main">
+            <h1 class="LogosView">Доступ по профессиям</h1>
+            <div class="SubFrame">
+                <button disabled id="addslave">Добавить работников</button>
+                <button disabled id="glog">Посмотреть логи</button>
+                <button disabled id="b">Роботы</button>
+                <button disabled id="d">Детали</button>
+            </div>
+        </div>
+        <div id="3" class="Main">
+            <h1 class="LogosView">Добавление нового работника</h1>
+            <div class="SubFrame">
+                <input maxlength="15" minlength="2" id="nl" placeholder="Логин"/>
+                <input maxlength="15" minlength="2" id="np" placeholder="Пароль"/>
+                <select id="roles">
+                    <option value="0">Администратор</option>
+                    <option value="1">Кладовщик</option>
+                    <option value="2">Инженер</option>
+                    <option value="3">Тестировщик</option>
+                    <option value="4">Руководитель производства</option>
+                    <option value="5">Руководитель отдела закупок</option>
+                    <option value="6">Менеджер по закупкам</option>
+                    <option value="7">Руководитель отдела продаж</option>
+                    <option value="8">Менеджер по продажам</option>
+                </select>
+                <button disabled id="AddAcc">Добавть</button>
+            </div>
+        </div>
+        <div id="4" class="Main">
+            <h1>Редактирование роботов</h1>
+            <div class="SubFrame">
+                <button id="ab">Добавить нового робота</button>
+                <table id="tb"></table>
+                <button id="sb">Сохранить таблицу</button>
+            </div>
+        </div>
+        <div id="5" class="Main">
+            <h1>Редактирование деталей</h1>
+            <div class="SubFrame">
+                <button id="ad">Добавить деталь</button>
+                <table id="td"></table>
+                <button id="sd">Сохранить таблицу</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='UsFuture/script.js')}}"></script>
+</body>
