@@ -7,6 +7,10 @@ from PlaneOnline.PlayerManagerClass import PlayerBD as PlaneBD
 
 import os
 import json
+import math
+
+#import vgamepad as vg
+#gp = vg.VX360Gamepad()
 
 from UsFuture.OBD import HumanBD as FutureBD
 
@@ -18,6 +22,13 @@ FBD = FutureBD()
 
 app = Flask(__name__, static_folder="", template_folder="")
 
+def Clamp(value:float, min:float, max:float):
+	if value < min:
+		return min
+	if value > max:
+		return max
+	return value
+
 def ReGet(key:str, default=None):
 	return request.headers.get(key, default)
 
@@ -25,9 +36,21 @@ def ReGet(key:str, default=None):
 def index():
 	return render_template(url_for("static", filename="pages/index.html"))
 
+"""@app.route("/wts", methods=['GET', 'POST'])
+def wts():
+	return render_template(url_for("static", filename="pages/wts.html"))
 
-
-
+@app.route("/wts/send", methods=['GET', 'POST'])
+def wsend():
+	x = float(ReGet("x"))
+	y = float(ReGet("y"))
+	z = float(ReGet("z"))
+	print("\n", x, y, z, round(math.sqrt(x**2 + y**2 + z**2)), "\n")
+	XAxe = Clamp(-x, -8, 8)/12
+	YAxe = Clamp(-y, -8, 8)/9
+	gp.right_joystick_float(x_value_float=Clamp(XAxe, -1, 1), y_value_float=Clamp(YAxe, -1, 1))
+	gp.update()
+	return """""
 @app.route("/maze", methods=['GET', 'POST'])
 def maze():
 	return render_template(url_for("static", filename="pages/Maze.html"))
@@ -197,5 +220,5 @@ def add_header(Text):
 ServerLevels = [
 	[[0,2,0],[2,1,2],[0,2,0]], [[0,1,0],[1,1,1],[0,1,0]], [[0, 0, 1, 0, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0], [0, 0, 1, 0, 0]], [[3, 1, 3, 1, 3], [1, 0, 0, 0, 1], [3, 0, 1, 0, 3], [1, 0, 0, 0, 1], [3, 1, 3, 1, 3]], [[0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 0], [2, 2, 2, 3, 1], [0, 0, 0, 0, 0]], [[0, 0, 0, 0, 0], [3, 1, 3, 0, 2], [1, 0, 1, 0, 1], [2, 0, 3, 1, 3], [0, 0, 0, 0, 0]], [[0, 2, 0, 0, 0], [0, 2, 2, 0, 0], [0, 1, 0, 1, 0], [2, 4, 2, 3, 1], [0, 1, 0, 0, 0]], [[3, 2, 1, 2, 3], [2, 0, 2, 0, 2], [1, 3, 4, 2, 1], [2, 0, 2, 0, 2], [3, 2, 1, 2, 3]], [[3, 1, 4, 1, 4, 1, 3], [1, 1, 1, 1, 1, 1, 1], [4, 1, 1, 1, 1, 1, 4], [1, 1, 1, 1, 1, 1, 1], [4, 1, 1, 1, 1, 1, 4], [1, 1, 1, 1, 1, 1, 1], [3, 1, 4, 1, 4, 1, 3]]]
 
-app.run(debug=False, port=5000)
+app.run(host='0.0.0.0', debug=False, port=5000)
 BD.SaveDataFile()

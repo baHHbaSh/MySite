@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title>Ты долбоёб?</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+            color: darkgray !important;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Acceleration in meter per second<sup>2</sup></p>
+        <div id="acceleration-x">0</div>
+        <div id="acceleration-y">0</div>
+        <div id="acceleration-z">0</div>
+        <div id="acceleration-max">0</div>
+    </div>
+</body>
+
+<script>
+const AccelerationXElement = document.getElementById("acceleration-x");
+const AccelerationYElement = document.getElementById("acceleration-y");
+const AccelerationZElement = document.getElementById("acceleration-z");
+const AccelerationMaxElement = document.getElementById("acceleration-max");
+ 
+function onMotionChange(e) {
+     const acceleration = e.accelerationIncludingGravity;
+     let x, y, z;
+     [x, y, z] = [acceleration.x, acceleration.y, acceleration.z];
+     const oldMax = parseFloat(AccelerationMaxElement.innerText);
+     const maxValue = Math.max(x, y, z, oldMax);
+     [
+       AccelerationXElement.innerText,
+       AccelerationYElement.innerText,
+       AccelerationZElement.innerText,
+       AccelerationMaxElement.innerText
+     ] = [x.toFixed(1), y.toFixed(1), z.toFixed(1), maxValue.toFixed(1)];
+}
+window.addEventListener('devicemotion', onMotionChange, true);
+
+function Main(){
+    fetch("/wts/send", {headers: {
+        "x":AccelerationXElement.innerText,
+        "y":AccelerationYElement.innerText,
+        "z":AccelerationZElement.innerText
+    }}).then(Response => {return Response.text();})
+    .then(data => {setTimeout(Main, 10)})
+    }
+Main()
+setInterval(() => {
+    window.location.reload();
+}, 7000)
+</script>
